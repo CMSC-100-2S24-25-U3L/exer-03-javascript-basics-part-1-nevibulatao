@@ -16,8 +16,6 @@ function checkPassword(pass1, pass2) {
                 if (pass1[x] == pass1[x].toLowerCase() && isNum(pass1[x]) === false){
                     break;
                 }
-
-                //if no lowercase yet and loop almost done, return false
                 if (x+1 == pass1.length){
                     return false;
                 }
@@ -28,8 +26,6 @@ function checkPassword(pass1, pass2) {
                 if (pass1[x] == pass1[x].toUpperCase() && isNum(pass1[x]) === false){
                     break;
                 }
-
-                //if no uppercase yet and loop almost done, return false
                 if (x+1 == pass1.length){
                     return false;
                 }
@@ -40,13 +36,10 @@ function checkPassword(pass1, pass2) {
                 if (isNum(pass1[x]) === true){
                     break;
                 }
-
-                //if no ==number yet and loop almost done, return false
                 if (x+1 == pass1.length){
                     return false;
                 }
             }
-            
             //if reached this point, means has upper and lower case and number
             return true;
         }
@@ -60,11 +53,28 @@ function checkPassword(pass1, pass2) {
 function reverse (pass) {
     var reversed = "";
     
+    //decrement through the string and add to reversed 
     for (x = pass.length-1; x >= 0; x--){
         reversed = reversed + pass[x];
     }
 
     return reversed;
+}
+
+
+function storePassword (username, pass1, pass2){
+    //create user object
+    const user = {
+        name: username,
+        newpassword: pass1
+    }
+
+    //use checkPW to check passwords, and then reverse it
+    if (checkPassword(pass1,pass2)===true){
+        user.newpassword = reverse(pass1);
+    }
+
+    return user;
 }
 
 // FUNCTION 1 TEST CASES
@@ -76,3 +86,7 @@ console.log(checkPassword("HELLO1234","HELLO1234"));
 
 // FUNCTION 2 TEST CASE
 console.log(reverse("hello"));
+
+// FUNCTION 3 TEST CASE
+console.log(storePassword("John","Pass1234","Pass1234"));
+console.log(storePassword("John","Pass123","Pass12345"));
