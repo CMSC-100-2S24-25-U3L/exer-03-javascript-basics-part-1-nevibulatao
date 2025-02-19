@@ -54,9 +54,18 @@ function checkPassword(pass1, pass2) {
         else {
             return false;
         }
-
 }
 
+//function for reversing a string
+function reverse (pass) {
+    var reversed = "";
+    
+    for (x = pass.length-1; x >= 0; x--){
+        reversed = reversed + pass[x];
+    }
+
+    return reversed;
+}
 
 // FUNCTION 1 TEST CASES
 console.log(checkPassword("helloword","hello"));
@@ -64,3 +73,6 @@ console.log(checkPassword("hello","hello"));
 console.log(checkPassword("hello1234","hello1234"));
 console.log(checkPassword("Hello1234","Hello1234"));
 console.log(checkPassword("HELLO1234","HELLO1234"));
+
+// FUNCTION 2 TEST CASE
+console.log(reverse("hello"));
